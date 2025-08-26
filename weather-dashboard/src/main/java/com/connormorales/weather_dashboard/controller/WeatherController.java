@@ -1,7 +1,9 @@
 package com.connormorales.weather_dashboard.controller;
 
+import com.connormorales.weather_dashboard.entity.ErrorLog;
 import com.connormorales.weather_dashboard.entity.WeatherData;
 import com.connormorales.weather_dashboard.model.WeatherResponse;
+import com.connormorales.weather_dashboard.repository.ErrorLogRepository;
 import com.connormorales.weather_dashboard.repository.WeatherDataRepository;
 import com.connormorales.weather_dashboard.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class WeatherController {
     @Autowired
     private WeatherDataRepository weatherDataRepository;
 
+    @Autowired
+    private ErrorLogRepository errorLogRepository;
+
     @GetMapping("/{city}")
     public WeatherResponse getWeather(@PathVariable String city) {
         if (city == null || city.isEmpty()) {
@@ -33,5 +38,10 @@ public class WeatherController {
     @GetMapping("/history")
     public List<WeatherData> getWeatherHistory(){
         return weatherDataRepository.findAll();
+    }
+
+    @GetMapping("/errors")
+    public List<ErrorLog> getErrorLogs(){
+        return errorLogRepository.findAll();
     }
 }

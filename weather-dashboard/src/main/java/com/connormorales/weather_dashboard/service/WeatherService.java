@@ -21,6 +21,9 @@ public class WeatherService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private ErrorLogService errorLogService;
+
     @Value("${weather.api.key}")
     private String apiKey;
 
@@ -43,8 +46,10 @@ public class WeatherService {
 
             return response;
         } catch (HttpClientErrorException.NotFound ex) {
+            errorLogService.logError(ex);
             throw new WeatherNotFoundException("City not found: " + city);
         } catch (Exception ex) {
+            errorLogService.logError(ex);
             throw new RuntimeException("Failed to fetch weather data: " + ex.getMessage());
         }
     }
