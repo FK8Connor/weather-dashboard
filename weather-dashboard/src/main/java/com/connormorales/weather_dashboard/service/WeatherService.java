@@ -70,5 +70,9 @@ public class WeatherService {
 
         weatherDataRepository.save(data);
     }
+
+    public WeatherResponse fetchWeather(String city) {
+        return new WeatherResponse();
+    }
 }
 

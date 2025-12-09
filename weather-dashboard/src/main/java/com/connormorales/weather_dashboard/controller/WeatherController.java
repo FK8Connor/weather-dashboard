@@ -6,6 +6,7 @@ import com.connormorales.weather_dashboard.model.WeatherResponse;
 import com.connormorales.weather_dashboard.repository.ErrorLogRepository;
 import com.connormorales.weather_dashboard.repository.WeatherDataRepository;
 import com.connormorales.weather_dashboard.service.WeatherService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
